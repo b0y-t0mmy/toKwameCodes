@@ -1,0 +1,157 @@
+<html>
+
+<head>
+    <title>Update Info</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="/libs/bootstrap.min.css">
+    <script type="text/javascript" src="/libs/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" href="../libs/bootstrap.css">
+    <link rel="stylesheet" href="../libs/dataTables.bootstrap4.min.css">
+
+    <script src="../libs/jquery.min.js"></script>
+    <script src="../libs/popper.min.js"></script>
+    <script src="../libs/bootstrap.bundle.js"></script>
+
+    <link rel="stylesheet" href="/stylesheets/update.css">
+</head>
+
+<body>
+    <form action="/update/<%= personnel.id %>?_method=PUT" method="POST">
+        <input type="hidden" name="_method" value="PUT">
+        <div class="row">
+            <div class="container">
+                <h2>Update Info</h2>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="half-container shadow">
+                    <div class="form-group col-sm-12">
+                        <div class="form-group">
+                        <label for="username" class="form-label">Enter Name</label>
+                        <input type="text" style="width: 25em;" value="<%= personnel.user.username %>" id="username"
+                            class="form-control" name="username" placeholder="Username">
+                        </div>
+
+                        <div class="form-group">
+                        <label for="Gender" class="form-label">Choose Your Gender</label>
+                        <div class="form-check">
+                            <input type="radio" name="genderRadios" id="genderRadios1" value="male"
+                                class="form-check-input"<%= personnel.genderRadios == 'Male' ? 'selected': '' %> >
+                            <label for="genderRadios1" class="form-check-label">Male</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" name="genderRadios" id="genderRadios2" value="male"
+                                class="form-check-input" <%= personnel.genderRadios == 'Female' ? 'selected': '' %> >
+                            <label for="genderRadios2" class="form-check-label">Female</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Date" class="form-label">Enter Your Date of Birth</label>
+                        <input type="date" id="Date" class="form-control" name="date" placeholder="Date" value="<%= personnel.date %>" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Email" class="form-label">Enter Your Email</label>
+                        <input type="email" style="width: 25em;" id="Email" class="form-control" name="email"
+                            placeholder="Email" value="<%= personnel.user.email %>" >
+                    </div>
+                </div>
+                </div>
+
+                <div class="half-container shadow">
+                    <div class="form-group col-sm-12">
+                        <div class="form-group">
+                            <label for="Phone" class="form-label">Enter Your Phone Number</label>
+                            <input type="tel" style="width: 25em;" id="Phone" class="form-control" name="phone"
+                                placeholder="Phone Number" value="<%= personnel.phone %>" >
+                        </div>
+
+                        <div class="form-group">
+                        <div class="region">
+                            <label for="Region" class="form-label">Select Your Region</label>
+                            <select name="region" class="form-control" value="<%= personnel.region %>" >
+                                <option selected>Select Your Region...</option>
+                                <option>Greater Accra</option>
+                                <option>Ashanti</option>
+                                <option>Bono</option>
+                                <option>Bono East</option>
+                                <option>Ahafo</option>
+                                <option>Central</option>
+                                <option>Eastern</option>
+                                <option>Nothern</option>
+                                <option>Savannah</option>
+                                <option>North Esat</option>
+                                <option>Upper East</option>
+                                <option>Upper West</option>
+                                <option>Volta</option>
+                                <option>Oti</option>
+                                <option>Westerm</option>
+                                <option>Western North</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                    <div class="category">
+                        <label for="Category" class="form-label">Select Your Category</label>
+                        <select name="category" class="form-control" value="<%= personnel.category %>"  required>
+                            <option selected>Select Your Category...</option>
+                            <option value="farmer">Farmer</option>
+                            <option value="buyer">Buyer</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                <label for="Farm Name" class="form-label">Enter Name Of Farm If Any</label>
+                        <input type="text" id="Farm Name" class="form-control" name="farmName" placeholder="Farm Name" value="<%= personnel.farmName %>">
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="full-container shadow">
+
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="half-container shadow">
+                    <div class="form-group col-sm-12">
+                        <div class="form-group">
+                            <label for="Location" class="form-label">Enter Farm's Location If You Are Farmer</label>
+                                    <input type="text" id="Location" class="form-control" name="location" placeholder="Location">
+                            </div>
+
+                        <div class="form-group">
+                            <label for="City" class="form-label">Enter Your City</label>
+                                <input type="text" id="City" class="form-control" name="city" placeholder="City">
+                            </div>
+        
+                            <div class="form-group">
+                            <label for="Address" class="form-label">Enter Your Address</label>
+                                <input type="text" id="Address" class="form-control" name="address" placeholder="Address">
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="Hometown" class="form-label">Enter Your Hometown</label>
+                                <input type="text" id="Hometown" class="form-control" name="hometown" placeholder="Hometown">
+                            </div>
+        
+                            <div class="form-group">
+        
+                            </div>
+                    </div>
+                </div>
+                <div class="half-container shadow">
+
+                </div>
+            </div>
+            <button type="submit" class="btn btn-secondary">Accept Changes</button>
+        </div>
+    </form>
+</body>
+
+</html>

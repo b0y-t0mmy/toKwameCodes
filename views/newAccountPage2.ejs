@@ -1,0 +1,96 @@
+<html>
+
+<head>
+    <title>New Account</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="/libs/bootstrap.min.css">
+    <script type="text/javascript" src="/libs/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" href="../libs/bootstrap.css">
+    <link rel="stylesheet" href="../libs/dataTables.bootstrap4.min.css">
+
+    <script src="../libs/jquery.min.js"></script>
+    <script src="../libs/popper.min.js"></script>
+    <script src="../libs/bootstrap.bundle.js"></script>
+
+    <link rel="stylesheet" href="/stylesheets/newAccountPage2.css">
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="container">
+            <form action="/newaccountpage2?_method=PUT" method="POST">
+                <input type="hidden" name="_method" value="PUT"> 
+                <div class="form d-flex justify-content-center shadow-lg" id="form">
+                    <div class="form-group mb-3">
+                        <h2 class="text-center">Please Complete the Form Below</h2>
+                        <div class="region">
+                            <label for="Region" class="form-label">Select Your Region</label>
+                            <select name="region" class="form-control" required>
+                                <option selected>Select Your Region...</option>
+                                <option>Greater Accra</option>
+                                <option>Ashanti</option>
+                                <option>Bono</option>
+                                <option>Bono East</option>
+                                <option>Ahafo</option>
+                                <option>Central</option>
+                                <option>Eastern</option>
+                                <option>Nothern</option>
+                                <option>Savannah</option>
+                                <option>North Esat</option>
+                                <option>Upper East</option>
+                                <option>Upper West</option>
+                                <option>Volta</option>
+                                <option>Oti</option>
+                                <option>Westerm</option>
+                                <option>Western North</option>
+                            </select>
+                        </div>
+
+                        <div class="category">
+                            <label for="Category" class="form-label">Select Your Category</label>
+                            <select name="category" class="form-control" required>
+                                <option selected>Select Your Category...</option>
+                                <option value="farmer">Farmer</option>
+                                <option value="buyer">Buyer</option>
+                            </select>
+                        </div>
+
+                        <label for="Farm Name" class="form-label">Enter Name Of Farm If Any</label>
+                        <input type="text" id="Farm Name" class="form-control" name="farmName" placeholder="Farm Name">
+                        
+                        <label for="Location" class="form-label">Enter Farm's Location If You Are Farmer</label>
+                        <input type="text" id="Location" class="form-control" name="location" placeholder="Location" required>
+
+                        <label for="City" class="form-label">Enter Your City</label>
+                        <input type="text" id="City" class="form-control" name="city" placeholder="City" required>
+
+                        <label for="Address" class="form-label">Enter Your Address</label>
+                        <input type="text" id="Address" class="form-control" name="address" placeholder="Address" required>
+
+                        <label for="Hometown" class="form-label">Enter Your Hometown</label>
+                        <input type="text" id="Hometown" class="form-control" name="hometown" placeholder="Hometown" required>
+
+
+                        <a href="/newAccountPage1" class="btn btn-dark">Previous</a>
+                        <button type="submit" class="btn btn-dark">Next</button> 
+                    </div>
+                </div>
+            </form>
+
+            <div class="step-row">
+                <div id="progress"></div>
+                <div class="step-col"><small>Step 1</small></div>
+                <div class="step-col"><small>Step 2</small></div>
+                <div class="step-col"><small>Step 3</small></div>
+            </div>
+
+        </div>
+        </div>
+    </div>
+</body>
+
+</html>

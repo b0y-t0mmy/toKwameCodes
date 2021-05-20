@@ -1,0 +1,81 @@
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    background: #0f0f0f;
+    margin: 0;
+    padding: 0;
+}
+
+.card{
+    width: 50%;
+    color: white;
+    border-radius: 8px;
+    background-color: #0f0f0f;
+    box-shadow: 0 0 50px #0ff,
+                inset 0 0 16px #0ff,
+                inset 0 0 10px #0ff;
+    margin:auto;
+    margin-top: 1em;
+}
+
+.card .card-body ul.list-group li{
+    color: white;
+    background-color: #0f0f0f;
+}
+
+.card2{
+    margin-left: 7%;
+}
+
+.card1{
+    margin-right: 10%;
+}
+
+.box{
+    position: relative;
+    box-sizing: border-box;
+    background: #0f0f0f;
+    width: 95%;
+    height: 90%;
+    margin: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgb(127, 134, 134);  
+    padding: 10px;
+    transform: translateY(5%);
+}
+
+form{
+    position: absolute;
+    top: -15rem;
+    left: 35%;
+    height: 50%;
+}
+
+@media only screen and (max-width:640px){
+      .card{
+          width: 100%;
+      }
+
+      .card2{
+          left: -7%;
+      }
+
+      .box{
+          height: 98%;
+      }
+
+      .form{
+        left: -8%;
+      }
+
+      .form .text-center{
+          left: -10%;
+
+      }
+
+      form .form-group input{
+          width: 80%;
+      }
+   }

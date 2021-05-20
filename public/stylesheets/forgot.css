@@ -1,0 +1,18 @@
+body{
+    background-color: wheat;
+}
+
+.container{
+    position: relative;
+    z-index: 1;
+    border-radius: .5em;
+    height: 15em;
+    width: 35em;
+    margin-top: 3em;
+    background-color: white;
+}
+
+.container h1{
+    margin-top: 20px 0 20px 0;
+
+}
