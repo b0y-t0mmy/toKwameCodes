@@ -20,6 +20,7 @@ router.get("/newaccountpage1", (req, res) => {
 });
 
 router.get("/newaccountpage2/", (req, res) => {
+    console.log(req.session.userId)
     res.render("newAccountPage2")
 });
 
@@ -89,67 +90,65 @@ router.post('/login', passport.authenticate('local', {
     failureFlash: 'Invalid email or password. Try again.'
 }))
 
-router.post("/newaccountpage1", (req, res) => {
+router.post("/newaccountpage1", async (req, res) => {
 
     let newUser = {
         username: req.body.username,
         email: req.body.email
     }
 
-    User.register(newUser, req.body.password, (err, user) => {
-        if (err) {
-            console.log(err)
-            req.flash('error_msg', 'ERROR :' + err)
-            res.redirect('/newaccountpage2')
-        }
+    let user = null
 
-        if (user) {
-            let { genderRadios, phone, date } = req.body;
+    try {
+        user = await User.register(newUser, req.body.password);
 
-            Personnel.create({
-                genderRadios,
-                phone,
-                date,
-                user: user.id
+    }catch(e) {
+        req.flash('error_msg', 'ERROR :' + e)
+        res.redirect('back');
+    }
 
-            }, (err, personnel) => {
-                if (err) {
-                    console.log(err);
-                    req.flash('error_msg', 'ERROR: ' + err);
-                    res.redirect('/login');
-                }
+    let { genderRadios, phone, date } = req.body;
 
-                if (personnel) {
-                    console.log(err);
+    const personnel = await Personnel.create({
+        genderRadios,
+        phone,
+        date,
+        user: user.id
+    });
+   
+    if(!personnel) {
+        console.log(err);
+        req.flash('error_msg', 'ERROR: ' + err);
+        res.redirect('/back');
+    }
 
-                    res.redirect('/newaccountpage2');
-                }
-            })
-        }
-    })
+    req.session.userId = user.id;
+
+    res.redirect('/newaccountpage2');
+
 });
 
-router.put("/newaccountpage2", (req, res) => {
+router.put("/newaccountpage2", async (req, res) => {
 
-    Personnel.findOne({ email: req.body.email }).populate('user')
-        
-            let continuation = {
-                region : req.body.region,
-                category : req.body.category,
-                farmName : req.body.farmName,
-                location : req.body.location,
-                city : req.body.city,
-                address : req.body.address,
-                hometown : req.body.hometown
-            };
-
-            Personnel.create(continuation)
-            .then(personnel => {
-                res.redirect("/accounts");
-            })
-        .catch(err => {
-            console.log('ERROR:' + err)
+    try {
+         await Personnel.updateOne({ user: req.session.userId }, {
+            region : req.body.region,
+            category : req.body.category,
+            farmName : req.body.farmName,
+            location : req.body.location,
+            city : req.body.city,
+            address : req.body.address,
+            hometown : req.body.hometown
         })
+
+        res.redirect("/accounts");
+    }catch(err) {
+        console.log('ERROR:' + err)
+        req.flash('error_msg', 'ERROR: ' + err);
+        res.redirect('back');
+    }
+
+   
 })
 
 
