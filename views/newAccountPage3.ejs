@@ -3,7 +3,6 @@
 <head>
     <title>New Account</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
     <link rel="stylesheet" href="/libs/bootstrap.min.css">
     <script type="text/javascript" src="/libs/bootstrap.min.js"></script>
 
@@ -22,10 +21,12 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="container">
-
+            <form action="/newaccountpagee3?_method=PUT" method="POST">
+                <input type="hidden" name="_method" value="PUT">     
                 <div class="form d-flex justify-content-center shadow-lg" id="form">
                     <div class="form-group mb-3">
                         <div class="col-sm-12">
+                            <%- include("partials/messages") -%>
                             <h2 class="text-center">Please Complete the Form Below</h2>
                             <label for="picture" class="form-label">Upload A Passport Picture</label>
                             <div class="custom-file">
@@ -34,16 +35,25 @@
                                     <input type="file" class="custom-file-input" name="picture">
                                     <label for="customFile" class="custom-file-label">Choose Picture</label>
                                     <div class="col-sm-12">
-                                        <button class="btn btn-dark" type="submit">Upload Picture</button>
+                                        <button class="btn btn-dark" name="picture" type="submit">Upload Picture</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
-                        <div class="mt-5 pt-3 col-sm-12">
-                            
+                        <div class="mt-5 pt-2 col-sm-12">
+                            <div>
+                            <label for="produce">Type your farm produce. One produce per field if many</label>
+                            <input type="text" name="produce" id="produce" class="produce form-control" placeholder="Type produce here">
+                            <button id="add" name="produce" class="btn btn-dark">Add produce</button>
                         </div>
+                            <ul>
+                            
+                            </ul>
+                        </div>
+                        <button class="btn btn-dark mt-3" type="submit">Complete</button>
                     </div>
                 </div>
+            </form>
         
             <div class="step-row">
                 <div id="progress"></div>
@@ -55,6 +65,35 @@
         </div>
     </div>
     </div>
+
+    <script>
+       const list = document.querySelector('ul');
+       const input = document.querySelector('#produce');
+       const button = document.querySelector('#add');
+
+       button.onclick = function(){
+           let myProduce = input.value;
+           input.value = '';
+
+           const listProduce = document.createElement('li');
+           const listText = document.createElement('span');
+           const listBtn = document.createElement('button');
+
+           listBtn.classList.add('buttonClass')
+
+           listProduce.appendChild(listText);
+           listText.textContent = myProduce;
+           listProduce.appendChild(listBtn);
+           listBtn.textContent = 'Delete';
+           list.appendChild(listProduce);
+
+           listBtn.onclick = function(e){
+               list.removeChild(listProduce);
+           }
+
+           input.focus();
+       }
+    </script>
 </body>
 
 </html>
