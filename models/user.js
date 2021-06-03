@@ -8,7 +8,7 @@ let userScheme = new mongoose.Schema({
         type : String,
         select : false
     },
-    role: Number, // 1-admin 2-teachers 3-students
+    role: Number, 
     resetPasswordToken : String,
     resetPasswordExpires : Date,
 });

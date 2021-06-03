@@ -11,11 +11,15 @@ let personnelScheme = new mongoose.Schema({
     city : String,
     address : String,
     hometown : String,
+    imgUrl : {
+        data : Buffer,
+        contentType : String
+    },
+    produce : [String],
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    },
-    imgUrl : String
+    }
 });
 
 module.exports = mongoose.model('Personnel', personnelScheme);
