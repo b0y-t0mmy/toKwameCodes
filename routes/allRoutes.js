@@ -20,17 +20,26 @@ router.get("/newaccountpage1", (req, res) => {
 });
 
 router.get("/newaccountpage2/", (req, res) => {
-    console.log(req.session.userId)
     res.render("newAccountPage2")
 });
 
 router.get("/newaccountpage3", (req, res) => {
-    res.render("newAccountPage3")
+    Personnel.findOne({}).populate('user')
+      .then(image => {
+        res.render("newAccountPage3", {image : image})
+      })
 });
 
 router.get("/mainpage/profile", (req, res) => {
     res.render("profile")
 });
+
+router.get("/personnel", (req, res) => {
+    let searchQuery = {username : req.query.username}
+
+    Personnel.findOne(searchQuery).populate('user')
+      .then(personnel)
+})
 
 router.get("/transaction", (req, res) => {
     res.render("transaction")
@@ -104,7 +113,7 @@ router.post("/newaccountpage1", async (req, res) => {
 
     }catch(e) {
         req.flash('error_msg', 'ERROR :' + e)
-        res.redirect('back');
+        res.redirect('/login');
     }
 
     let { genderRadios, phone, date } = req.body;
@@ -119,14 +128,14 @@ router.post("/newaccountpage1", async (req, res) => {
     if(!personnel) {
         console.log(err);
         req.flash('error_msg', 'ERROR: ' + err);
-        res.redirect('/back');
+        res.redirect('/login');
     }
 
     req.session.userId = user.id;
 
     res.redirect('/newaccountpage2');
-
 });
+
 
 router.put("/newaccountpage2", async (req, res) => {
 
@@ -141,14 +150,26 @@ router.put("/newaccountpage2", async (req, res) => {
             hometown : req.body.hometown
         })
 
-        res.redirect("/accounts");
+        res.redirect("/newaccountpage3");
     }catch(err) {
         console.log('ERROR:' + err)
         req.flash('error_msg', 'ERROR: ' + err);
-        res.redirect('back');
-    }
+        res.redirect('/login');
+    }   
+})
 
-   
+router.put("/newaccountpage3", async (req,res) => {
+    try{
+        await Personnel.updateOne({ user: req.session.userId }, {
+            produce : req.body.produce,
+        })
+
+        res.redirect("/mainpage");
+    }catch(err) {
+        console.log('ERROR:' + err)
+        req.flash('error_msg', 'ERROR: ' + err);
+        res.redirect('/login');
+    } 
 })
 
 
@@ -181,7 +202,8 @@ function checkFileType(file, cb) {
 router.post('/uploadpicture', upload.single('picture'), (req, res, next) => {
     const file = req.file;
     if (!file) {
-        return console.log('Please select an image');
+         req.flash("error_msg", "Please select an image")
+         return console.log('Please select an image'); 
     }
 
     let url = file.path.replace('public', '');
@@ -196,13 +218,14 @@ router.post('/uploadpicture', upload.single('picture'), (req, res, next) => {
             Personnel.create({ imgUrl: url })
                 .then(img => {
                     console.log('Image saved');
-                    return res.redirect('/mainpage/profile');
+                    return res.redirect('/newaccountpage3');
                 })
         })
         .catch(err => {
             return console.log('ERROR :' + err)
         })
 });
+
 
 router.post("/forgot", (req, res, next) => {
     let recoveryPassword = "";
