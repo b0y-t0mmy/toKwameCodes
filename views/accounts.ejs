@@ -1,0 +1,50 @@
+<html>
+
+<head>
+    <title>Accounts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="/libs/bootstrap.min.css">
+    <script type="text/javascript" src="/libs/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" href="../libs/bootstrap.css">
+    <link rel="stylesheet" href="../libs/dataTables.bootstrap4.min.css">
+
+    <script src="../libs/jquery.min.js"></script>
+    <script src="../libs/popper.min.js"></script>
+    <script src="../libs/bootstrap.bundle.js"></script>
+
+    <link rel="stylesheet" href="/stylesheets/accounts.css">
+</head>
+
+<body>
+    <div class="row">
+        <div class="container justify-content-center">
+            <div class="col-sm-12">
+                <h3>List Of Account Holders</h3>
+            </div>
+                <%- include("partials/messages") -%>
+                <br>
+                <% personnels.forEach((personnel) => { %>
+                    <div class="col-sm-12 col-lg-12">
+                        <div class="container shadow justify-content-around col-sm-12">
+                                    <div>
+                                        <p>
+                                            <%= personnel.user.username %>
+                                        </p>
+                                    </div>
+                                <div>
+                                    <a href="/update/>" class="btn btn-link">Update</a>
+                                    <form style="display: inline;"  method="POST">
+                                        <input type= "hidden" name="_method" value="DELETE">
+                                        <button style="cursor : pointer;" type="submit" class="btn btn-primary ml-2">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                <% }) %>
+        </div>
+</body>
+
+</html>

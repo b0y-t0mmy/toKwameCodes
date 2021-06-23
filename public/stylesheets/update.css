@@ -1,0 +1,39 @@
+body{
+    background: rgb(241, 239, 239);
+}
+
+.row .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row .col-md-4 .half-container{
+    position: relative;
+    display: flex;
+    box-sizing: border-box;
+    height: 22em;
+    width: 100%;
+    border-radius: 0.5em;
+    margin: 40px 0;
+}
+
+.row .col-md-4 .full-container{
+    position: relative;
+    display: flex;
+    box-sizing: border-box;
+    height: 90%;
+    width: 100%;
+    border-radius: 0.5em;
+    margin: 40px 0;
+}
+
+form .row .col-md-4 .half-container .col-sm-12 input{
+    border-radius: 2em;
+}
+
+form .row button .btn{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}

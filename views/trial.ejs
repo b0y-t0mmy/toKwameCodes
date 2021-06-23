@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <title>Trial</title>
+    <link rel="stylesheet" href="/stylesheets/trial.css">
+</head>
+
+<body onload="myFunction()" style="margin: 0;">
+    <div id="preloader">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div style="display: none;" id="myDiv" class="animate-bottom">
+        <h2>Welcome to my page</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos illo consequuntur aspernatur voluptatum quis
+            laudantium, eos quasi accusamus quibusdam accusantium? A illum corrupti doloremque iste molestias aliquam,
+            aliquid blanditiis nesciunt.</p>
+    </div>
+
+    <script>
+        var myVar;
+        function myFunction(){
+          myVar = setTimeout(showPage,3000)
+        }
+
+        function showPage(){
+            document.getElementById('preloader').style.display = 'none';
+            document.getElementById('myDiv').style.display = 'block';
+        }
+    </script>
+
+</body>
+
+</html>

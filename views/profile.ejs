@@ -1,0 +1,62 @@
+<html>
+
+<head>
+    <title>Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/libs/bootstrap.min.css">
+    <script type="text/javascript" src="/libs/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" href="../libs/bootstrap.css">
+    <link rel="stylesheet" href="../libs/dataTables.bootstrap4.min.css">
+
+    <script src="../libs/jquery.min.js"></script>
+    <script src="../libs/popper.min.js"></script>
+    <script src="../libs/bootstrap.bundle.js"></script>
+
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+</head>
+
+<body>
+    <% if(currentUser){ %>
+    <div class="name">
+        <h3>Welcome <%= currentUser.username %></h3>
+    </div>
+    <div class="row">
+        <div class="d-flex col-lg-4 col-sm-12 shadow-lg">
+            <div class="full-container">
+                <div class="card">
+                    <div class="pic-container">
+                        <img src="../images/Kris Wu.jpg" alt="">
+                    </div>
+
+                    <div class="change-picture">
+                        <label for="PassportPicture" class="form-label">To Change Your Passport Picture</label>
+                        <div class="custom-file">
+                            <form action="/uploadPassportPicture" class="form-control" enctype="multipart/form-data"
+                                method="POST">
+                                <input type="file" class="custom-file-input" name="PassportPicture">
+                                <label for="CustomFile" class="custom-file-label">Choose New Picture</label>
+                                <div class="col-sm-12">
+                                    <button class="btn btn-dark" type="submit">Upload Picture</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <a href="/logout" class="btn btn-dark">Logout</a>
+            </div>
+        </div>
+        <div class="col-lg-8 col-sm-12">
+            <div class="half-container shadow-lg">
+                <p class="badge badge-info">Name : </p>
+            </div>
+            <div class="half-container shadow-lg">
+
+            </div>
+        </div>
+    </div>
+     <% } %>
+</body>
+
+</html>

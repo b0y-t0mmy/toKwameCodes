@@ -1,0 +1,61 @@
+html{
+    scroll-behavior: smooth;
+}
+
+.row .container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.row .col-sm-12 .container{
+    background-color: rgb(243, 243, 243);
+    box-sizing: border-box;
+    height: 3em;
+    width: 90%;
+    border-radius: 2em;
+    margin: 1em;
+    padding: 5px;
+    padding-left: 4vmin;
+    position: relative;
+    transition:all .5s;
+}
+
+.row .col-sm-12 .container:hover{
+    height: 3.7em;
+    width: 94%;
+    margin-left: -4px;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.row .col-sm-12 .container .btn{
+    border-radius: 2em;
+}
+
+.row .col-sm-12 h3{
+    margin: 2em;
+    margin-left: 35%;
+}
+
+.fixed-hover{
+    position: fixed;
+    height: 50px;
+    width: 50px;
+    background-color: rgb(152, 152, 230);
+    border-radius: 2em;
+    z-index: 1000000000;
+    right: 50px;
+    bottom: 50px;
+    box-shadow: 0 0 20px #704444;
+}
+
+.btn-container .btn{
+    transition: letter-spacing .5s;
+}
+
+.btn-container .btn:hover{
+    letter-spacing: 2px;
+}

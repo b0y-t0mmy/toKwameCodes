@@ -1,0 +1,114 @@
+<html>
+
+<head>
+    <title>New Account</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/libs/bootstrap.min.css">
+    <script type="text/javascript" src="/libs/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" href="../libs/bootstrap.css">
+    <link rel="stylesheet" href="../libs/dataTables.bootstrap4.min.css">
+
+    <script src="../libs/jquery.min.js"></script>
+    <script src="../libs/popper.min.js"></script>
+    <script src="../libs/bootstrap.bundle.js"></script>
+
+    <link rel="stylesheet" href="/stylesheets/newAccountPage3.css">
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="container">
+                <form action="/newaccountpage3" method="POST" enctype="multipart/form-data" id="final-form">
+                    <div class="form d-flex justify-content-center shadow-lg" id="form">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <%- include("partials/messages") -%>
+                                    <h2 class="text-center">Please Complete the Form Below</h2>
+                                    <label for="picture" class="form-label">Upload A Passport Picture</label>
+                                    <input type="file" class="form-control" name="picture" required>
+                                    <!-- <div class="custom-file">
+
+                                        <label for="customFile" class=""></label>
+                                    </div> -->
+                            </div>
+                            <div class="mt-4 col-sm-12">
+                                <div>
+                                    <label for="produce">Type your farm produce. One produce per field if many</label>
+                                    <input type="text" name="produce" id="produce" class="produce form-control"
+                                        placeholder="Type produce here">
+                                    <button type="button" id="add" class="btn btn-dark mt-3">Add
+                                        produce</button>
+                                </div>
+                                <ul>
+
+                                </ul>
+                            </div>
+                            <button class="btn btn-dark mt-3 btn-submit" type="submit">Complete</button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="step-row">
+                    <div id="progress"></div>
+                    <div class="step-col"><small>Step 1</small></div>
+                    <div class="step-col"><small>Step 2</small></div>
+                    <div class="step-col"><small>Step 3</small></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const list = document.querySelector('ul');
+        const input = document.querySelector('#produce');
+        const button = document.querySelector('#add');
+
+        let produce = []
+
+
+        button.onclick = function () {
+
+            if (input.value == '') {
+                return;
+            }
+
+            let myProduce = input.value;
+            input.value = '';
+
+            produce.push(myProduce);
+
+            const listProduce = document.createElement('li');
+            const listText = document.createElement('span');
+            const listBtn = document.createElement('button');
+
+            listBtn.classList.add('buttonClass')
+
+            listProduce.appendChild(listText);
+            listText.textContent = myProduce;
+            listProduce.appendChild(listBtn);
+            listBtn.textContent = 'Delete';
+            list.appendChild(listProduce);
+
+            listBtn.onclick = function (e) {
+                list.removeChild(listProduce);
+            }
+
+            input.focus();
+        }
+
+        $('.btn-submit').on('click', function (e) {
+            e.preventDefault()
+
+            $('#produce').val(produce)
+
+            $("#final-form").submit()
+        });
+
+    </script>
+</body>
+
+</html>
