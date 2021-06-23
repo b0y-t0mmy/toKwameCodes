@@ -12,7 +12,7 @@ let personnelScheme = new mongoose.Schema({
     address : String,
     hometown : String,
     imgUrl: String,
-    produce : [String],
+    produce : Array,
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
